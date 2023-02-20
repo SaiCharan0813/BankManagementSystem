@@ -57,10 +57,10 @@ namespace BankManagement
             }
             if (bankName.Length < 3)
             {
+                Console.WriteLine("Bank name should be more than 3 letters");
                 goto enterBankName;
             }
             bank.BankId = bankName.Substring(0, 3) + DateTime.Now.ToString("ddMMyyyy");
-            Console.WriteLine(bank.BankId);
             foreach(var userBank in BankManagement.banks) 
             { 
                 if(userBank.BankId == bank.BankId)

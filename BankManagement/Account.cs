@@ -40,7 +40,11 @@ namespace BankManagement
                     Console.WriteLine("Enter valid Bank id number");
                     goto enterBankIdNumber;
                 }
-
+                if(bankIdNumber.Length <3) 
+                {
+                    Console.WriteLine("Enter valid bank id");
+                    goto enterBankIdNumber;
+                }
 
                 bool isBankExist = false;
                 
@@ -73,11 +77,11 @@ namespace BankManagement
                     }
                     else if (accountName.Length < 3)
                     {
+                        Console.WriteLine("Account number should be more than 3 letters");
                         goto enterAccountName;
                     }
 
                     ac.AccountNumber = accountName.Substring(0, 3) + DateTime.Now.ToString("ddMMyyyy");
-                    Console.WriteLine(ac.AccountNumber);
                     ac.AccountHolderName = accountName;
                     ac.IdOfBank = bankIdNumber;
                     foreach (var userAccount in bankObject.accounts)
@@ -117,7 +121,11 @@ namespace BankManagement
                     Console.WriteLine("Enter valid Bank id number");
                     goto enterBankIdNumber;
                 }
-
+                if (bankIdnumber.Length < 3)
+                {
+                    Console.WriteLine("Enter valid bank id");
+                    goto enterBankIdNumber;
+                }
                 bool isBankExist = false;
                 for (int i = 0; i < BankManagement.banks.Count; i++)
                 {
@@ -145,6 +153,11 @@ namespace BankManagement
                         Console.WriteLine("Enter valid Account number");
                         goto enterAccountId;
                     }
+                    if(accountId.Length< 3)
+                    {
+                        Console.WriteLine("Enter valid account number");
+                        goto enterAccountId;
+                    }
                     Account ac = new Account();
                     bool isAccountExist = false;
 
@@ -162,8 +175,16 @@ namespace BankManagement
                         ac = bankObject.accounts.Find(x => x.AccountNumber == accountId);
                         bankObject.accounts.Remove(ac);
                     }
+                    else
+                    {
+                        Console.WriteLine("Account not available");
+                    }
 
 
+                }
+                else
+                {
+                    Console.WriteLine("Bank not available");
                 }
             }
         }
@@ -187,7 +208,11 @@ namespace BankManagement
                     Console.WriteLine("Enter valid Bank id number");
                     goto enterBankIdNumber;
                 }
-
+                if (bankIdnumber.Length < 3)
+                {
+                    Console.WriteLine("Enter valid bank id");
+                    goto enterBankIdNumber;
+                }
                 bool isBankExist = false;
                 for (int i = 0; i < BankManagement.banks.Count; i++)
                 {
@@ -213,6 +238,11 @@ namespace BankManagement
                     catch (FormatException ex)
                     {
                         Console.WriteLine("Enter valid Account number");
+                        goto enterAccountId;
+                    }
+                    if (accountId.Length < 3)
+                    {
+                        Console.WriteLine("Enter valid account number");
                         goto enterAccountId;
                     }
                     Account ac = new Account();
@@ -253,6 +283,7 @@ namespace BankManagement
                         }
                         else
                         {
+                            Console.WriteLine("Currency not available");
                             goto enterCurrencyName;
                         }
                     enterDepositAmount:
@@ -268,7 +299,7 @@ namespace BankManagement
                         catch (FormatException ex)
                         {
                             Console.WriteLine("Enter valid Amount");
-                            goto enterBankIdNumber;
+                            goto enterDepositAmount;
                         }
                         ac = bankObject.accounts.Find(x => x.AccountNumber == accountId);
                         ac.AccountAmount += depositAmount * ratioOfCurrency;
@@ -276,8 +307,16 @@ namespace BankManagement
                         Console.WriteLine(ac.AccountAmount);
 
                     }
+                    else
+                    {
+                        Console.WriteLine("Account not available");
+                    }
 
 
+                }
+                else
+                {
+                    Console.WriteLine("Bank not available");
                 }
             }
         }
@@ -300,7 +339,11 @@ namespace BankManagement
                     Console.WriteLine("Enter valid Bank id number");
                     goto enterBankIdNumber;
                 }
-
+                if (bankIdnumber.Length < 3)
+                {
+                    Console.WriteLine("Enter valid bank id");
+                    goto enterBankIdNumber;
+                }
                 bool isBankExist = false;
                 for (int i = 0; i < BankManagement.banks.Count; i++)
                 {
@@ -326,6 +369,11 @@ namespace BankManagement
                     catch (FormatException ex)
                     {
                         Console.WriteLine("Enter valid Account number");
+                        goto enterAccountId;
+                    }
+                    if (accountId.Length < 3)
+                    {
+                        Console.WriteLine("Enter valid account number");
                         goto enterAccountId;
                     }
                     Account ac = new Account();
@@ -363,8 +411,16 @@ namespace BankManagement
                         Console.WriteLine(ac.AccountAmount);
 
                     }
+                    else
+                    {
+                        Console.WriteLine("Account not available");
+                    }
 
 
+                }
+                else
+                {
+                    Console.WriteLine("Bank not available");
                 }
             }
         }
@@ -387,7 +443,11 @@ namespace BankManagement
                     Console.WriteLine("Enter valid Bank id number");
                     goto enterBankIdNumber;
                 }
-
+                if (bankIdnumber.Length < 3)
+                {
+                    Console.WriteLine("Enter valid bank id");
+                    goto enterBankIdNumber;
+                }
                 bool isBankExist = false;
                 for (int i = 0; i < BankManagement.banks.Count; i++)
                 {
@@ -397,6 +457,7 @@ namespace BankManagement
                         isBankExist = true;
                         break;
                     }
+                   
 
                 }
                 if (isBankExist == true)
@@ -434,7 +495,20 @@ namespace BankManagement
                         Console.WriteLine("Zero is not acceptable");
                         goto enterCurrencyRatio;
                     }
+                   foreach(var currency in bankObject.AcceptableCurrency.Keys)
+                    {
+                        if (currency==currencyName.ToUpper())
+                        {
+                            Console.WriteLine("Currency type already exists");
+                            goto enterCurrencyName;
+                        }
+                    }
+                    
                     bankObject.AcceptableCurrency.Add(currencyName.ToUpper(), currencyRatio);
+                }
+                else
+                {
+                    Console.WriteLine("Bank not available");
                 }
             }
         }
@@ -455,7 +529,11 @@ namespace BankManagement
                     Console.WriteLine("Enter valid Bank id number");
                     goto enterSenderBankIdNumber;
                 }
-
+                if (senderBankIdnumber.Length < 3)
+                {
+                    Console.WriteLine("Enter valid bank id");
+                    goto enterSenderBankIdNumber;
+                }
                 bool isSenderBankExist = false;
                 for (int i = 0; i < BankManagement.banks.Count; i++)
                 {
@@ -482,6 +560,11 @@ namespace BankManagement
                     catch (FormatException ex)
                     {
                         Console.WriteLine("Enter valid Account number");
+                        goto enterSenderAccountId;
+                    }
+                    if (senderAccountId.Length < 3)
+                    {
+                        Console.WriteLine("Enter valid account number");
                         goto enterSenderAccountId;
                     }
                     Account ac = new Account();
@@ -517,7 +600,11 @@ namespace BankManagement
                                 Console.WriteLine("Enter valid Bank id number");
                                 goto enterRecieverBankIdNumber;
                             }
-
+                            if (recieverBankIdnumber.Length < 3)
+                            {
+                                Console.WriteLine("Enter valid bank id");
+                                goto enterRecieverBankIdNumber;
+                            }
                             bool isRecieverBankExist = false;
                             for (int j = 0; j < BankManagement.banks.Count; j++)
                             {
@@ -544,6 +631,11 @@ namespace BankManagement
                                 catch (FormatException ex)
                                 {
                                     Console.WriteLine("Enter valid Account number");
+                                    goto enterRecieverAccountId;
+                                }
+                                if (recieverAccountId.Length < 3)
+                                {
+                                    Console.WriteLine("Enter valid account number");
                                     goto enterRecieverAccountId;
                                 }
                                 Account rac = new Account();
@@ -643,12 +735,30 @@ namespace BankManagement
                                     }
 
                                 }
+                                else
+                                {
+                                    Console.WriteLine("Account not available");
+                                }
 
+                            }
+                            else
+                            {
+                                Console.WriteLine("Bank not available");
                             }
                         }
 
                     }
+                    else
+                    {
+                        Console.WriteLine("Account not available");
+                    }
+                    
                 }
+                else
+                {
+                    Console.WriteLine("Bank not available");
+                }
+
             }
         }
         public static void TransactionHistory()
@@ -668,6 +778,11 @@ namespace BankManagement
                 catch (FormatException ex)
                 {
                     Console.WriteLine("Enter valid Bank id number");
+                    goto enterBankIdNumber;
+                }
+                if (bankIdnumber.Length < 3)
+                {
+                    Console.WriteLine("Enter valid bank id");
                     goto enterBankIdNumber;
                 }
 
@@ -698,6 +813,11 @@ namespace BankManagement
                         Console.WriteLine("Enter valid Account number");
                         goto enterAccountId;
                     }
+                    if (accountId.Length < 3)
+                    {
+                        Console.WriteLine("Enter valid account number");
+                        goto enterAccountId;
+                    }
                     Account ac = new Account();
                     bool isAccountExist = false;
 
@@ -718,6 +838,14 @@ namespace BankManagement
                             Console.WriteLine("Transaction id: " + transaction.TransactionId + " Transaction type: " + transaction.TransactionType + " Sender Account id: " + transaction.SenderAccountId + " Sender bank id: " + transaction.SenderBankId + " Reciever account id: " + transaction.RecieverAccountId + " Reciever bank id: " + transaction.RecieverBankId + " Transaction amount: " + transaction.TransactionAmount + " ");
                         }
                     }
+                    else
+                    {
+                        Console.WriteLine("Account not available");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Bank not available");
                 }
             }
         }
@@ -740,7 +868,11 @@ namespace BankManagement
                     Console.WriteLine("Enter valid Bank id number");
                     goto enterBankIdNumber;
                 }
-
+                if (bankIdnumber.Length < 3)
+                {
+                    Console.WriteLine("Enter valid bank id");
+                    goto enterBankIdNumber;
+                }
                 bool isBankExist = false;
                 for (int i = 0; i < BankManagement.banks.Count; i++)
                 {
@@ -767,6 +899,11 @@ namespace BankManagement
                     catch (FormatException ex)
                     {
                         Console.WriteLine("Enter valid Account number");
+                        goto enterAccountId;
+                    }
+                    if (accountId.Length < 3)
+                    {
+                        Console.WriteLine("Enter valid account number");
                         goto enterAccountId;
                     }
                     Account ac = new Account();
@@ -817,6 +954,14 @@ namespace BankManagement
                         ac.AccountAmount += receieverAmount;
                         rac.AccountAmount -= receieverAmount;
                     }
+                    else
+                    {
+                        Console.WriteLine("Account not available");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Bank not available");
                 }
             }
         }
@@ -839,7 +984,11 @@ namespace BankManagement
                     Console.WriteLine("Enter valid Bank id number");
                     goto enterBankIdNumber;
                 }
-
+                if (bankIdnumber.Length < 3)
+                {
+                    Console.WriteLine("Enter valid bank id");
+                    goto enterBankIdNumber;
+                }
                 bool isBankExist = false;
                 for (int i = 0; i < BankManagement.banks.Count; i++)
                 {
@@ -868,6 +1017,11 @@ namespace BankManagement
                         Console.WriteLine("Enter valid Account number");
                         goto enterAccountId;
                     }
+                    if (accountId.Length < 3)
+                    {
+                        Console.WriteLine("Enter valid account number");
+                        goto enterAccountId;
+                    }
                     Account ac = new Account();
                     bool isAccountExist = false;
                     foreach (Account st in bankObject.accounts)
@@ -884,6 +1038,14 @@ namespace BankManagement
                         ac = bankObject.accounts.Find(x => x.AccountNumber == accountId);
                         Console.WriteLine("Your account balance is: " + ac.AccountAmount);
                     }
+                    else
+                    {
+                        Console.WriteLine("Account not available");
+                    }
+                }
+                 else
+                {
+                    Console.WriteLine("Bank not available");
                 }
             }
         }
